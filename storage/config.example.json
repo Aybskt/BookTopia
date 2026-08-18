@@ -1,0 +1,10 @@
+{
+    "csv_path_livre": "../storage/dataLivre.csv",
+    "link_api": "https://www.googleapis.com/books/v1/volumes",
+    "key_api": "",
+    "csv_path_book": "../storage/dataLivre.csv",
+    "unsplash_key": "",
+    "nasa_key": "",
+    "ip2location_key": "",
+    "ipinfo_token": ""
+}

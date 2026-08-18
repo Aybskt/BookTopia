@@ -1,0 +1,11 @@
+Options -Indexes
+
+<FilesMatch "(?i)^(config\.json|info\.php|.*\.csv)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule !mod_authz_core.c>
+    <FilesMatch "(?i)^(config\.json|info\.php|.*\.csv)$">
+        Deny from all
+    </FilesMatch>
+</IfModule>

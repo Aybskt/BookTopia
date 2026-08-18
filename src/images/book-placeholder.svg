@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="520" viewBox="0 0 360 520" role="img" aria-labelledby="title description">
+  <title id="title">Couverture indisponible</title>
+  <desc id="description">Couverture de remplacement BookTopia</desc>
+  <defs>
+    <linearGradient id="background" x1="25" y1="15" x2="330" y2="505" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#365f50"/>
+      <stop offset="1" stop-color="#1e342c"/>
+    </linearGradient>
+  </defs>
+  <rect width="360" height="520" rx="24" fill="url(#background)"/>
+  <rect x="22" y="22" width="316" height="476" rx="16" fill="none" stroke="#d89a4a" stroke-width="3" opacity=".75"/>
+  <path d="M78 177c37-12 71-5 102 20v134c-31-24-65-31-102-19V177Zm204 0c-37-12-71-5-102 20v134c31-24 65-31 102-19V177Z" fill="#fffdf8"/>
+  <path d="M180 197v134" stroke="#d89a4a" stroke-width="7" stroke-linecap="round"/>
+  <text x="180" y="82" fill="#fffdf8" font-family="Georgia,serif" font-size="31" font-weight="700" text-anchor="middle">BookTopia</text>
+  <text x="180" y="402" fill="#eadcc4" font-family="Arial,sans-serif" font-size="18" text-anchor="middle">Couverture indisponible</text>
+</svg>

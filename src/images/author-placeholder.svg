@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" role="img" aria-labelledby="title description">
+  <title id="title">Photo d’auteur indisponible</title>
+  <desc id="description">Silhouette neutre utilisée lorsqu’aucune photo d’auteur n’est disponible.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7f2e9"/>
+      <stop offset="1" stop-color="#e8dccb"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="800" rx="56" fill="url(#background)"/>
+  <circle cx="400" cy="300" r="132" fill="#c56538" opacity=".88"/>
+  <path d="M170 710c16-158 105-250 230-250s214 92 230 250" fill="#19382f" opacity=".92"/>
+  <text x="400" y="755" text-anchor="middle" font-family="Arial, sans-serif" font-size="30" fill="#6f6258">Photo indisponible</text>
+</svg>
