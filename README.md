@@ -212,9 +212,11 @@ Version publique : **[https://booktopia.fr](https://booktopia.fr)**
 
 ## 📚 Documentation
 
-- [Rapport du projet](docs/Rapport-de-projet-dev-web.pdf)
-- [Audit avant publication](docs/AMELIORATIONS_AVANT_PUBLICATION.md)
-- [Documentation PHP générée](docs/api/html/index.html)
+- [Portail de documentation](docs/README.md)
+- [Rapport du projet — PDF](docs/Rapport-de-projet-dev-web.pdf)
+- [Rapport du projet — HTML](docs/Rapport-de-projet-dev-web.html)
+- [Audit de maturité et feuille de route](docs/AMELIORATIONS_AVANT_PUBLICATION.md)
+- [Référence des fonctions PHP](docs/api/html/index.html)
 
 ---
 

@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rapport de projet — BookTopia</title>
+  <style>
+    @page { size: A4; margin: 18mm 17mm 18mm; }
+    :root { --forest:#19372f; --forest-2:#2f5d50; --orange:#c96b3d; --gold:#d99a4e; --cream:#f7f3ec; --ink:#24312d; --muted:#66736f; --line:#d9dfda; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--ink); background:#e9ece9; font:10.5pt/1.55 "Aptos", "Segoe UI", Arial, sans-serif; }
+    .report { width:210mm; margin:0 auto; background:#fff; box-shadow:0 18px 55px rgba(18,45,38,.14); }
+    .page { min-height:297mm; padding:18mm 17mm; position:relative; page-break-after:always; }
+    .page:last-child { page-break-after:auto; }
+    .cover { color:#fff; overflow:hidden; background:linear-gradient(145deg,#102a23 0%,#244b40 60%,#315d50 100%); display:flex; flex-direction:column; justify-content:space-between; }
+    .cover:before,.cover:after { content:""; position:absolute; border-radius:50%; border:1px solid rgba(255,255,255,.13); }
+    .cover:before { width:150mm;height:150mm;right:-70mm;top:-52mm; }
+    .cover:after { width:100mm;height:100mm;right:-42mm;top:-18mm; }
+    .brand { display:flex; align-items:center; gap:12px; font-size:13pt; letter-spacing:.12em; text-transform:uppercase; }
+    .brand-mark { width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--orange),var(--gold));font:bold 23px Georgia,serif;box-shadow:0 10px 28px rgba(201,107,61,.3); }
+    .cover-main { position:relative; z-index:1; max-width:150mm; }
+    .eyebrow { color:#f0b879; font-weight:700; letter-spacing:.18em; text-transform:uppercase; font-size:9pt; }
+    .cover h1 { margin:13px 0 12px; color:#fff; font:700 41pt/1.05 Georgia,serif; letter-spacing:-.03em; }
+    .cover .subtitle { margin:0; max-width:130mm; color:#e2ebe7; font-size:16pt; line-height:1.45; }
+    .cover-meta { display:grid;grid-template-columns:1fr 1fr;gap:16px;border-top:1px solid rgba(255,255,255,.2);padding-top:20px;color:#dce7e2; }
+    .cover-meta strong { display:block;color:#fff;font-size:11pt;margin-bottom:3px; }
+    h1,h2,h3 { color:var(--forest); }
+    h1 { font:700 29pt/1.15 Georgia,serif; margin:0 0 9mm; }
+    h2 { font:700 20pt/1.2 Georgia,serif; margin:0 0 6mm; padding-bottom:3mm; border-bottom:2px solid var(--orange); }
+    h3 { font-size:12.5pt; margin:7mm 0 2mm; }
+    p { margin:0 0 3.5mm; }
+    a { color:var(--orange); text-decoration:none; }
+    .section-kicker { color:var(--orange);font-size:8.5pt;font-weight:800;letter-spacing:.16em;text-transform:uppercase;margin-bottom:3mm; }
+    .lead { color:#42534d;font-size:13pt;line-height:1.65;margin-bottom:7mm; }
+    .callout { background:var(--cream); border-left:4px solid var(--orange); border-radius:0 9px 9px 0; padding:5mm 6mm; margin:6mm 0; }
+    .grid-2 { display:grid;grid-template-columns:1fr 1fr;gap:5mm; }
+    .grid-3 { display:grid;grid-template-columns:repeat(3,1fr);gap:4mm; }
+    .card { border:1px solid var(--line);border-radius:10px;padding:5mm;background:#fff; }
+    .card strong { color:var(--forest);display:block;margin-bottom:1.5mm; }
+    .metric { background:var(--forest);color:#fff;border-radius:10px;padding:5mm; }
+    .metric b { display:block;color:#f2b777;font-size:22pt;line-height:1.1; }
+    .metric span { color:#dce8e3;font-size:9pt; }
+    table { width:100%;border-collapse:collapse;margin:4mm 0 6mm;font-size:9.2pt; }
+    th { background:var(--forest);color:#fff;text-align:left;padding:3mm; }
+    td { border-bottom:1px solid var(--line);padding:3mm;vertical-align:top; }
+    tr:nth-child(even) td { background:#f8faf8; }
+    ul,ol { margin:2mm 0 5mm 5mm;padding-left:4mm; }
+    li { margin-bottom:1.4mm; }
+    code { font-family:"Cascadia Mono",Consolas,monospace;background:#eef2ef;border-radius:3px;padding:1px 4px;color:#264b40; }
+    pre { white-space:pre-wrap;background:#132c25;color:#e7f0ec;border-radius:9px;padding:5mm;font:8.5pt/1.5 Consolas,monospace; }
+    .flow { display:flex;align-items:stretch;gap:2mm;margin:6mm 0; }
+    .flow div { flex:1;padding:4mm 2mm;text-align:center;border-radius:8px;background:#edf3f0;color:var(--forest);font-weight:700; }
+    .flow i { align-self:center;color:var(--orange);font-style:normal;font-size:16pt; }
+    .screenshot { width:100%;border-radius:11px;border:1px solid #d9dfda;box-shadow:0 10px 24px rgba(25,55,47,.12); }
+    .caption { color:var(--muted);font-size:8.5pt;text-align:center;margin-top:2mm; }
+    .status { display:inline-block;border-radius:99px;padding:1mm 2.5mm;font-weight:700;font-size:8pt; }
+    .done { color:#1d664d;background:#dff3e9; }.partial { color:#8a5a13;background:#fff0ce; }.todo { color:#8a3434;background:#f9dede; }
+    .toc { counter-reset:toc;list-style:none;padding:0;margin:0; }
+    .toc li { counter-increment:toc;display:flex;gap:4mm;padding:3.2mm 0;border-bottom:1px solid var(--line); }
+    .toc li:before { content:counter(toc,decimal-leading-zero);color:var(--orange);font-weight:800; }
+    .footer { position:absolute;left:17mm;right:17mm;bottom:9mm;display:flex;justify-content:space-between;color:#7c8884;font-size:8pt;border-top:1px solid #e5e9e6;padding-top:2mm; }
+    .no-break { break-inside:avoid;page-break-inside:avoid; }
+    @media print { body{background:#fff}.report{box-shadow:none}.page{margin:0} }
+  </style>
+</head>
+<body>
+<main class="report">
+  <section class="page cover">
+    <div class="brand"><span class="brand-mark">B</span><span>BookTopia</span></div>
+    <div class="cover-main">
+      <div class="eyebrow">Rapport de projet · Édition 2026</div>
+      <h1>Une bibliothèque numérique moderne et résiliente</h1>
+      <p class="subtitle">Conception, modernisation, optimisation des APIs et mise en production de BookTopia.</p>
+    </div>
+    <div class="cover-meta">
+      <div><strong>Équipe</strong>Ayoub ABDELLI<br>Lounis BOUHADOUN</div>
+      <div><strong>Projet</strong>Groupe A04 · Développement Web<br>Version 2.0 · 18 août 2026</div>
+      <div><strong>Production</strong>https://booktopia.fr</div>
+      <div><strong>Dépôt</strong>github.com/Aybskt/BookTopia</div>
+    </div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">Vue d’ensemble</div>
+    <h1>Synthèse exécutive</h1>
+    <p class="lead">BookTopia est une application web de découverte littéraire réalisée en PHP natif. Elle agrège plusieurs sources ouvertes pour réunir recherche, fiches bibliographiques, biographies d’auteurs, recommandations, tendances et favoris dans une interface responsive cohérente.</p>
+    <div class="grid-3">
+      <div class="metric"><b>5</b><span>APIs et services externes intégrés</span></div>
+      <div class="metric"><b>15 min</b><span>TTL du cache des réponses JSON</span></div>
+      <div class="metric"><b>100 %</b><span>Interface adaptée mobile et bureau</span></div>
+    </div>
+    <div class="callout"><strong>Évolution majeure.</strong> Le projet universitaire initial de 2023 a été repris en profondeur en 2026 : identité visuelle modernisée, robustesse réseau renforcée, données externes sécurisées, stockage isolé et déploiement public sous HTTPS.</div>
+    <h3>Résultat livré</h3>
+    <ul>
+      <li>une expérience de recherche limitée à cinq pages claires et navigables ;</li>
+      <li>des fiches livres enrichies avec couverture de secours et recommandations ;</li>
+      <li>des biographies francophones et une sélection d’ouvrages par auteur ;</li>
+      <li>une bibliothèque personnelle présentée sous forme d’étagères ;</li>
+      <li>des tendances et classements construits à partir de données d’API ;</li>
+      <li>un comportement dégradé propre quand un fournisseur externe est indisponible.</li>
+    </ul>
+    <h3>Positionnement technique</h3>
+    <p>L’architecture reste volontairement simple : aucun framework, aucune dépendance Composer et aucune base de données obligatoire. PHP assure le rendu serveur et l’orchestration des données ; JavaScript gère les interactions ; le système de fichiers prend en charge statistiques, préférences et cache.</p>
+    <div class="footer"><span>BookTopia · Rapport de projet</span><span>2</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">Navigation</div>
+    <h1>Sommaire</h1>
+    <ol class="toc">
+      <li>Contexte, vision et objectifs</li>
+      <li>Périmètre fonctionnel</li>
+      <li>Expérience utilisateur et direction artistique</li>
+      <li>Architecture technique</li>
+      <li>APIs externes et qualité des données</li>
+      <li>Performance, cache et résilience</li>
+      <li>Sécurité et protection des données</li>
+      <li>Déploiement et exploitation</li>
+      <li>Validation et assurance qualité</li>
+      <li>Bilan, limites et feuille de route</li>
+    </ol>
+    <div class="callout"><strong>Convention.</strong> Les éléments marqués « réalisé » décrivent l’état actuel du dépôt au 18 août 2026. Les axes restant à traiter sont regroupés dans la feuille de route finale et détaillés dans <code>AMELIORATIONS_AVANT_PUBLICATION.md</code>.</div>
+    <div class="footer"><span>BookTopia · Rapport de projet</span><span>3</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">01 · Cadrage</div>
+    <h2>Contexte, vision et objectifs</h2>
+    <p>Le projet est né dans le cadre d’un travail universitaire de développement web. Son objectif pédagogique initial consistait à mobiliser HTML5, CSS3, JavaScript et PHP autour de formats d’échange JSON/XML et de services web publics. La version 2026 conserve ce socle tout en visant un niveau de finition adapté à une publication réelle.</p>
+    <h3>Problème traité</h3>
+    <p>Les informations utiles à la découverte d’un livre sont dispersées entre catalogues, encyclopédies et classements. BookTopia rassemble ces informations sans tenter de remplacer les fournisseurs : l’application joue le rôle d’interface éditoriale, relie les données et maintient une expérience homogène.</p>
+    <h3>Objectifs produit</h3>
+    <div class="grid-2">
+      <div class="card"><strong>Découvrir</strong>Mettre en avant tendances, nouveautés, popularité et visuels éditoriaux.</div>
+      <div class="card"><strong>Comprendre</strong>Présenter les métadonnées d’un ouvrage et le contexte de son auteur.</div>
+      <div class="card"><strong>Conserver</strong>Permettre la création d’une bibliothèque personnelle locale.</div>
+      <div class="card"><strong>Rester disponible</strong>Continuer à rendre la page même si une API ralentit ou échoue.</div>
+    </div>
+    <h3>Contraintes structurantes</h3>
+    <ul>
+      <li>hébergement mutualisé et ressources serveur limitées ;</li>
+      <li>dépendance à des APIs dont les quotas et temps de réponse varient ;</li>
+      <li>absence de base de données et de gestion de comptes ;</li>
+      <li>compatibilité PHP 8+, cURL et GD ;</li>
+      <li>préservation de l’architecture et de la logique métier historiques.</li>
+    </ul>
+    <div class="footer"><span>01 · Cadrage</span><span>4</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">02 · Produit</div>
+    <h2>Périmètre fonctionnel</h2>
+    <table>
+      <thead><tr><th>Parcours</th><th>Fonctions principales</th><th>Source</th></tr></thead>
+      <tbody>
+        <tr><td>Accueil</td><td>Hero quotidien, tendances, dernières sorties, livres populaires et dernière consultation.</td><td>Unsplash, OpenLibrary, Google Books</td></tr>
+        <tr><td>Recherche</td><td>Recherche par titre/auteur, dix résultats par page, maximum cinq pages.</td><td>Google Books</td></tr>
+        <tr><td>Détail</td><td>Couverture, auteur, ISBN, éditeur, date, description, favoris et similaires.</td><td>Google Books</td></tr>
+        <tr><td>Auteur</td><td>Biographie en français, portrait, top de livres et couvertures de secours.</td><td>Wikipédia, OpenLibrary, Google Books</td></tr>
+        <tr><td>Bibliothèque</td><td>Favoris persistants côté navigateur, affichage responsive en étagères.</td><td>Stockage client + Google Books</td></tr>
+        <tr><td>Statistiques</td><td>Consultations, auteurs et recherches visualisés sous forme de graphiques.</td><td>CSV local + JpGraph</td></tr>
+        <tr><td>Tech</td><td>APOD, informations techniques et localisation approximative.</td><td>NASA, IPinfo/IP2Location</td></tr>
+      </tbody>
+    </table>
+    <h3>Principes d’expérience</h3>
+    <ul>
+      <li>chaque couverture dispose d’un placeholder local en cas d’erreur ;</li>
+      <li>les liens internes conservent les paramètres utiles, notamment le thème ;</li>
+      <li>les messages d’indisponibilité remplacent les warnings techniques ;</li>
+      <li>les données distantes sont échappées avant toute insertion dans le HTML ;</li>
+      <li>les éléments non essentiels utilisent le chargement différé.</li>
+    </ul>
+    <div class="footer"><span>02 · Produit</span><span>5</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">03 · Design</div>
+    <h2>Expérience utilisateur et direction artistique</h2>
+    <p class="lead">La nouvelle identité associe un vert profond à des accents orange et dorés. Les titres sérifés évoquent l’édition, tandis que les composants arrondis, espacements réguliers et transitions discrètes apportent un rendu contemporain.</p>
+    <img class="screenshot" src="../assets/booktopia-home.png" alt="Capture de la page d’accueil BookTopia">
+    <p class="caption">Page d’accueil : navigation, hero éditorial et contenus issus des APIs.</p>
+    <div class="grid-3 no-break" style="margin-top:6mm">
+      <div class="card"><strong>Responsive</strong>Grilles fluides, cartes adaptatives, navigation mobile et tailles typographiques bornées.</div>
+      <div class="card"><strong>Accessible</strong>Textes alternatifs, focus clavier, contrastes et libellés explicites.</div>
+      <div class="card"><strong>Cohérent</strong>Préchargeur, favicon, boutons, pagination et page 404 partagent la même DA.</div>
+    </div>
+    <div class="footer"><span>03 · Design</span><span>6</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">03 · Design</div>
+    <h2>Fiche détaillée et bibliothèque</h2>
+    <img class="screenshot" src="../assets/booktopia-details.png" alt="Capture d’une fiche livre BookTopia">
+    <p class="caption">Fiche d’Atomic Habits : données bibliographiques, couverture et recommandations.</p>
+    <h3>Choix d’interface notables</h3>
+    <ul>
+      <li>le titre d’un livre est limité visuellement dans les cartes afin de préserver le rythme des grilles ;</li>
+      <li>la bibliothèque reprend la métaphore de l’étagère sans sacrifier la lisibilité sur mobile ;</li>
+      <li>la pagination expose clairement l’état courant et limite l’exploration à cinq pages ;</li>
+      <li>le bouton de retour en haut est positionné pour ne pas masquer les actions flottantes ;</li>
+      <li>les thèmes clair et sombre utilisent la même hiérarchie visuelle.</li>
+    </ul>
+    <div class="footer"><span>03 · Design</span><span>7</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">04 · Technique</div>
+    <h2>Architecture applicative</h2>
+    <div class="flow"><div>Navigateur</div><i>→</i><div>Pages PHP</div><i>→</i><div>Helpers communs</div><i>→</i><div>APIs externes</div></div>
+    <div class="flow"><div>Cookies / favoris</div><i>↔</i><div>Rendu HTML</div><i>↔</i><div>Cache fichier</div><i>↔</i><div>Stockage privé</div></div>
+    <h3>Organisation du dépôt</h3>
+    <pre>BookTopia/
+├── assets/                     captures destinées au dépôt
+├── docs/                       rapports et documentation
+├── src/                        racine web publique
+│   ├── include/                helpers, header et footer
+│   ├── images/                 visuels et fallbacks locaux
+│   ├── js/app.js               interactions côté client
+│   ├── jpgraph/                moteur de graphiques embarqué
+│   ├── index.php               accueil
+│   ├── page-de-recherche.php   résultats et pagination
+│   ├── details.php             fiche livre
+│   └── data_auteur.php         fiche auteur
+└── storage/                    configuration locale non publique</pre>
+    <h3>Responsabilités</h3>
+    <p><code>functions.inc.php</code> centralise le stockage, l’échappement, les appels HTTP, le cache et les agrégations principales. Les pages restent responsables de leur rendu et réutilisent un en-tête et un pied de page communs.</p>
+    <div class="callout"><strong>Choix assumé.</strong> Cette architecture procédurale conserve la compatibilité avec le projet d’origine. Une migration MVC n’apporterait pas un gain proportionné au périmètre actuel.</div>
+    <div class="footer"><span>04 · Architecture</span><span>8</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">05 · Données</div>
+    <h2>APIs externes et qualité des résultats</h2>
+    <table>
+      <thead><tr><th>Service</th><th>Usage</th><th>Optimisation / repli</th></tr></thead>
+      <tbody>
+        <tr><td>Google Books</td><td>Recherche, identifiants et détails.</td><td><code>fields</code>, <code>projection=lite</code>, requêtes titre/auteur précises, placeholder local.</td></tr>
+        <tr><td>OpenLibrary</td><td>Tendances, popularité, œuvres d’un auteur.</td><td>Champs restreints, couvertures grand format, listes locales critiques.</td></tr>
+        <tr><td>Wikipédia REST</td><td>Biographies et portraits.</td><td>Priorité à l’édition française, traduction de repli, bio générique si échec.</td></tr>
+        <tr><td>Unsplash</td><td>Deux visuels éditoriaux du hero.</td><td>Renouvellement quotidien, attribution, copie en cache, visuels locaux de secours.</td></tr>
+        <tr><td>NASA / IP</td><td>Contenus de démonstration technique.</td><td>Page isolée, clés optionnelles, messages neutres en cas d’indisponibilité.</td></tr>
+      </tbody>
+    </table>
+    <h3>Exemple de précision bibliographique</h3>
+    <p>Pour associer un résultat OpenLibrary à Google Books, la recherche combine une contrainte exacte sur le titre et l’auteur :</p>
+    <pre>intitle:"Atomic Habits" inauthor:"James Clear"
+maxResults=1 · printType=books · projection=lite
+fields=items(id)</pre>
+    <p>Une validation normalisée du titre et de l’auteur limite les correspondances approximatives. Si aucun résultat fiable n’est trouvé, l’identifiant reste nul et l’interface conserve un état navigable.</p>
+    <h3>Qualité des images</h3>
+    <p>Les couvertures OpenLibrary utilisent la variante <code>-L.jpg</code>. Les miniatures Google Books sont forcées en HTTPS. Les attributs <code>onerror</code> basculent vers des SVG locaux pour supprimer les zones vides.</p>
+    <div class="footer"><span>05 · Données</span><span>9</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">06 · Exploitation</div>
+    <h2>Performance, cache et résilience</h2>
+    <h3>Cycle d’un appel externe</h3>
+    <div class="flow"><div>URL normalisée</div><i>→</i><div>Cache mémoire</div><i>→</i><div>Cache disque</div><i>→</i><div>cURL</div></div>
+    <ol>
+      <li>une URL identique est servie immédiatement depuis la mémoire durant la requête PHP ;</li>
+      <li>le fichier <code>sha1($url).json</code> est réutilisé pendant 900 secondes ;</li>
+      <li>au-delà du TTL, une requête cURL courte tente de rafraîchir les données ;</li>
+      <li>en cas d’échec, une donnée périmée exploitable ou un fallback local est privilégié ;</li>
+      <li>aucun warning réseau n’est envoyé au navigateur.</li>
+    </ol>
+    <div class="grid-3">
+      <div class="card"><strong>Connexion</strong>Délais de connexion inférieurs ou égaux à 3 secondes.</div>
+      <div class="card"><strong>Réponse</strong>Timeout global inférieur ou égal à 4 secondes.</div>
+      <div class="card"><strong>Payload</strong>Champs JSON restreints aux informations réellement affichées.</div>
+    </div>
+    <h3>Réduction des appels</h3>
+    <p>Les sélections critiques connues conservent leurs identifiants Google lorsque cela évite une recherche supplémentaire. Unsplash n’est renouvelé qu’une fois par jour. Les images secondaires utilisent <code>loading="lazy"</code> et <code>decoding="async"</code>.</p>
+    <div class="callout"><strong>Effet attendu.</strong> Après préchauffage, une visite répétée sollicite principalement le cache local. Les variations de quota ou les réponses HTTP 429 ne bloquent plus le rendu complet de l’accueil.</div>
+    <div class="footer"><span>06 · Performance</span><span>10</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">07 · Confiance</div>
+    <h2>Sécurité et protection des données</h2>
+    <table>
+      <thead><tr><th>Risque</th><th>Mesure actuelle</th><th>État</th></tr></thead>
+      <tbody>
+        <tr><td>Injection HTML/XSS</td><td>Helper <code>e()</code>, encodage des URLs et validation des paramètres attendus.</td><td><span class="status done">Réalisé</span></td></tr>
+        <tr><td>Secrets publics</td><td><code>config.json</code> exclu de Git ; stockage privé ou dossier protégé en production.</td><td><span class="status done">Réalisé</span></td></tr>
+        <tr><td>Listing et fichiers CSV</td><td><code>Options -Indexes</code> et refus d’accès Apache aux configurations, CSV et <code>info.php</code>.</td><td><span class="status done">Réalisé</span></td></tr>
+        <tr><td>Écriture concurrente</td><td>Verrouillage <code>flock()</code> pour le compteur et les journaux CSV.</td><td><span class="status done">Réalisé</span></td></tr>
+        <tr><td>Transport</td><td>Site public servi sous HTTPS avec certificat installé.</td><td><span class="status done">Réalisé</span></td></tr>
+        <tr><td>En-têtes renforcés</td><td>CSP, HSTS et politique de permissions à compléter selon l’hébergeur.</td><td><span class="status partial">À renforcer</span></td></tr>
+      </tbody>
+    </table>
+    <h3>Données personnelles</h3>
+    <p>Le projet journalise encore l’adresse IP associée à certaines recherches statistiques. Avant une diffusion plus large, il est recommandé de supprimer cette collecte ou de l’anonymiser, de documenter la durée de conservation et d’ajouter une information de confidentialité.</p>
+    <h3>Gestion des secrets</h3>
+    <p>Le dépôt ne contient que <code>config.example.json</code>. Les clés et identifiants réels doivent être renouvelés dès qu’ils ont été transmis hors d’un canal sûr, stockés uniquement sur la machine ou l’hébergement cible et ne jamais être intégrés à une archive de partage.</p>
+    <div class="footer"><span>07 · Sécurité</span><span>11</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">08 · Production</div>
+    <h2>Déploiement et exploitation</h2>
+    <h3>Environnement cible</h3>
+    <p>Le site public est déployé sur un hébergement mutualisé InfinityFree et exposé via <strong>booktopia.fr</strong>. Le DNS du domaine pointe vers l’hébergeur et le certificat TLS est géré depuis son panneau.</p>
+    <div class="flow"><div>booktopia.fr</div><i>→</i><div>DNS</div><i>→</i><div>InfinityFree</div><i>→</i><div>booktopia.fr/htdocs</div></div>
+    <h3>Structure attendue en production</h3>
+    <pre>booktopia.fr/
+└── htdocs/
+    ├── index.php
+    ├── .htaccess
+    ├── include/
+    ├── images/
+    ├── jpgraph/
+    └── .booktopia_storage/
+        ├── .htaccess
+        ├── config.json
+        ├── *.csv
+        └── cache quotidien</pre>
+    <p>Le contenu de <code>src/</code>, et non le dossier lui-même, est copié dans <code>htdocs</code>. Le helper <code>project_storage_path()</code> détecte cet environnement et utilise le stockage protégé compatible avec les contraintes de l’offre.</p>
+    <h3>Pré-requis</h3>
+    <ul><li>PHP 8 ou supérieur ;</li><li>extensions cURL, JSON, mbstring et GD ;</li><li>écriture autorisée sur le stockage et le cache API ;</li><li>réécriture/contrôle d’accès Apache compatibles avec <code>.htaccess</code>.</li></ul>
+    <div class="footer"><span>08 · Déploiement</span><span>12</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">09 · Qualité</div>
+    <h2>Validation et assurance qualité</h2>
+    <table>
+      <thead><tr><th>Contrôle</th><th>Critère</th><th>État au 18/08/2026</th></tr></thead>
+      <tbody>
+        <tr><td>Syntaxe PHP</td><td>Tous les fichiers applicatifs passent <code>php -l</code>.</td><td><span class="status done">Validé</span></td></tr>
+        <tr><td>Navigation</td><td>Accueil, recherche, détail, auteur, bibliothèque, statistiques, tech, à propos.</td><td><span class="status done">Validé</span></td></tr>
+        <tr><td>API indisponible</td><td>La page continue avec message ou placeholder, sans erreur fatale.</td><td><span class="status done">Validé</span></td></tr>
+        <tr><td>Responsive</td><td>Contrôle visuel sur téléphone, tablette et bureau.</td><td><span class="status done">Validé</span></td></tr>
+        <tr><td>HTTPS</td><td>Certificat installé et accès public sécurisé.</td><td><span class="status done">Validé</span></td></tr>
+        <tr><td>Tests automatisés</td><td>Tests unitaires, intégration et parcours navigateur en CI.</td><td><span class="status todo">À créer</span></td></tr>
+      </tbody>
+    </table>
+    <h3>Scénarios de non-régression</h3>
+    <ol>
+      <li>rechercher <em>Atomic Habits</em>, ouvrir la fiche et vérifier couverture et similaires ;</li>
+      <li>ouvrir James Clear et vérifier portrait, biographie française et trois ouvrages ;</li>
+      <li>ajouter/supprimer un favori puis recharger la bibliothèque ;</li>
+      <li>naviguer sur les cinq pages de résultats sans perdre la requête ni le thème ;</li>
+      <li>simuler l’indisponibilité d’une API et vérifier les fallbacks ;</li>
+      <li>contrôler l’absence d’accès HTTP aux CSV et au fichier de configuration.</li>
+    </ol>
+    <div class="footer"><span>09 · Qualité</span><span>13</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">10 · Bilan</div>
+    <h2>Résultats et enseignements</h2>
+    <p class="lead">La modernisation transforme un prototype académique en une application publique cohérente, plus rapide et nettement plus robuste, tout en respectant son architecture procédurale et sa logique historique.</p>
+    <div class="grid-2">
+      <div class="card"><strong>Ce qui fonctionne bien</strong><ul><li>identité visuelle homogène ;</li><li>agrégation de données utile ;</li><li>cache efficace et fallbacks ;</li><li>déploiement simple ;</li><li>dépôt documenté.</li></ul></div>
+      <div class="card"><strong>Limites assumées</strong><ul><li>pas de comptes utilisateurs ;</li><li>favoris propres au navigateur ;</li><li>statistiques sur fichiers CSV ;</li><li>dépendance aux fournisseurs ;</li><li>tests encore manuels.</li></ul></div>
+    </div>
+    <h3>Apprentissages</h3>
+    <p>Le principal enjeu n’a pas été l’appel d’une API isolée, mais la coordination de plusieurs sources aux modèles différents. Le cache, les timeouts, la sélection stricte des champs, l’échappement HTML et les données de repli sont devenus des composants essentiels du produit.</p>
+    <p>Le déploiement a également montré l’importance de distinguer racine publique, stockage privé, secrets de configuration, DNS et certificat TLS. Ces préoccupations font désormais partie de la documentation opérationnelle.</p>
+    <div class="footer"><span>10 · Bilan</span><span>14</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">10 · Suite</div>
+    <h2>Feuille de route priorisée</h2>
+    <table>
+      <thead><tr><th>Priorité</th><th>Action</th><th>Bénéfice</th></tr></thead>
+      <tbody>
+        <tr><td>P0</td><td>Renouveler toutes les clés et tous les identifiants ayant été partagés, puis vérifier l’historique Git.</td><td>Réduction du risque d’abus et de quota consommé.</td></tr>
+        <tr><td>P1</td><td>Anonymiser ou supprimer les IP dans les statistiques ; formaliser la conservation.</td><td>Confidentialité et conformité.</td></tr>
+        <tr><td>P1</td><td>Ajouter CSP, HSTS, <code>Referrer-Policy</code> et <code>Permissions-Policy</code> après test.</td><td>Durcissement navigateur.</td></tr>
+        <tr><td>P1</td><td>Créer une suite de tests PHP et des smoke tests des pages critiques.</td><td>Déploiements plus sûrs.</td></tr>
+        <tr><td>P2</td><td>Automatiser lint, contrôle des secrets et validation des liens dans GitHub Actions.</td><td>Qualité continue.</td></tr>
+        <tr><td>P2</td><td>Ajouter une purge bornée des anciens caches et une rotation des CSV.</td><td>Stockage maîtrisé.</td></tr>
+        <tr><td>P3</td><td>Étudier des comptes utilisateurs et un stockage structuré si l’audience le justifie.</td><td>Synchronisation multi-appareils.</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Décision recommandée.</strong> Consolider sécurité et tests avant d’ajouter de nouvelles fonctions métier. La base actuelle est adaptée à une vitrine publique et à une audience modérée ; une croissance importante nécessiterait une base de données et un cache partagé.</div>
+    <h3>Conclusion</h3>
+    <p>BookTopia atteint son objectif : proposer une découverte littéraire claire, agréable et tolérante aux pannes. La version 2026 constitue une base publiable, documentée et évolutive, avec une liste transparente des améliorations restant à mener.</p>
+    <div class="footer"><span>10 · Feuille de route</span><span>15</span></div>
+  </section>
+
+  <section class="page">
+    <div class="section-kicker">Annexe</div>
+    <h2>Références techniques</h2>
+    <h3>Configuration locale</h3>
+    <pre>{
+  "link_api": "https://www.googleapis.com/books/v1/volumes",
+  "key_api": "",
+  "unsplash_key": "",
+  "nasa_key": "",
+  "ip2location_key": "",
+  "ipinfo_token": ""
+}</pre>
+    <p>Les valeurs réelles ne doivent jamais apparaître dans le dépôt ou dans le rapport.</p>
+    <h3>Démarrage</h3>
+    <pre>Copy-Item storage/config.example.json storage/config.json
+php -S localhost:8000 -t src</pre>
+    <h3>Liens</h3>
+    <ul>
+      <li>Application : <a href="https://booktopia.fr">https://booktopia.fr</a></li>
+      <li>Dépôt : <a href="https://github.com/Aybskt/BookTopia">https://github.com/Aybskt/BookTopia</a></li>
+      <li>Google Books : <a href="https://developers.google.com/books">developers.google.com/books</a></li>
+      <li>OpenLibrary : <a href="https://openlibrary.org/developers/api">openlibrary.org/developers/api</a></li>
+      <li>Wikimedia REST : <a href="https://www.mediawiki.org/wiki/API:REST_API">mediawiki.org/wiki/API:REST_API</a></li>
+    </ul>
+    <h3>Crédits</h3>
+    <p>Conception et développement : Ayoub ABDELLI et Lounis BOUHADOUN. Les métadonnées, images et contenus tiers restent soumis aux conditions de leurs fournisseurs respectifs.</p>
+    <div class="footer"><span>Annexe · Références</span><span>16</span></div>
+  </section>
+</main>
+</body>
+</html>
