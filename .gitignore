@@ -14,6 +14,7 @@ tmp/
 *.zip
 remote-*.tmp
 response-*.tmp
+signal_time.png
 
 # Environment and editor files
 .env
